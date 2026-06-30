@@ -1,0 +1,28 @@
+{
+  "matrix": {
+    "low": {
+      "recommended": ["chatgpt-free", "chatgpt-plus", "claude-sonnet", "gemini-free", "mistral-api", "le-chat", "ollama-cloud", "ollama-local", "llama-cpp-local", "azure-openai", "aws-bedrock", "gemini-workspace", "chatgpt-enterprise"],
+      "caution": [],
+      "forbidden": ["deepseek", "qwen", "kimi", "glm"],
+      "local_only": false
+    },
+    "medium": {
+      "recommended": ["mistral-api", "claude-sonnet", "ollama-cloud", "azure-openai", "aws-bedrock", "chatgpt-enterprise", "gemini-workspace", "ollama-local", "llama-cpp-local"],
+      "caution": ["chatgpt-plus", "le-chat", "gemini-free"],
+      "forbidden": ["chatgpt-free", "deepseek", "qwen", "kimi", "glm"],
+      "local_only": false
+    },
+    "high": {
+      "recommended": ["mistral-api", "claude-sonnet", "azure-openai", "aws-bedrock", "ollama-local", "llama-cpp-local", "chatgpt-enterprise", "gemini-workspace", "ollama-cloud"],
+      "caution": ["chatgpt-plus"],
+      "forbidden": ["chatgpt-free", "gemini-free", "le-chat", "deepseek", "qwen", "kimi", "glm"],
+      "local_only": false
+    },
+    "critical": {
+      "recommended": ["ollama-local", "llama-cpp-local"],
+      "caution": ["azure-openai"],
+      "forbidden": ["chatgpt-free", "chatgpt-plus", "chatgpt-enterprise", "claude-sonnet", "gemini-free", "gemini-workspace", "mistral-api", "le-chat", "deepseek", "qwen", "kimi", "glm", "ollama-cloud", "aws-bedrock"],
+      "local_only": true
+    }
+  }
+}

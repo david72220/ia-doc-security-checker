@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* === Custom styles === */
+:root {
+  --color-safe: #22c55e;
+  --color-caution: #eab308;
+  --color-risk: #ef4444;
+  --color-critical: #991b1b;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+/* Smooth transitions for language toggle */
+.lang-toggle {
+  transition: all 0.2s ease;
+}
+
+/* Risk badge animations */
+@keyframes pulse-critical {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.badge-critical {
+  animation: pulse-critical 2s ease-in-out infinite;
+}
+
+/* Upload zone */
+.upload-zone {
+  transition: all 0.3s ease;
+}
+
+.upload-zone.dragover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  transform: scale(1.02);
+}
+
+/* Table responsive */
+@media (max-width: 768px) {
+  .model-table {
+    font-size: 0.875rem;
+  }
+  .model-table thead {
+    display: none;
+  }
+  .model-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  .model-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.25rem 0;
+  }
+  .model-table td::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: #64748b;
+  }
+}

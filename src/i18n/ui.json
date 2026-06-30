@@ -1,0 +1,228 @@
+{
+  "fr": {
+    "nav": {
+      "dashboard": "Tableau",
+      "analyze": "Analyser",
+      "about": "À propos",
+      "login": "Connexion"
+    },
+    "home": {
+      "title": "IA Doc Security Checker",
+      "subtitle": "Vérifiez si vous pouvez utiliser l'IA en toute sécurité sur vos documents professionnels",
+      "select_business_type": "Sélectionnez votre type d'entreprise",
+      "autoentrepreneur": "Auto-entrepreneur",
+      "autoentrepreneur_desc": "Indépendant ou micro-entreprise",
+      "tpe": "TPE",
+      "tpe_desc": "Très Petite Entreprise (moins de 10 salariés)",
+      "pme": "PME",
+      "pme_desc": "Petite ou Moyenne Entreprise (10-250 salariés)",
+      "how_it_works": "Comment ça marche",
+      "step1": "Sélectionnez votre secteur",
+      "step1_desc": "Comptabilité, commercial, juridique, RH...",
+      "step2": "Choisissez votre type de document",
+      "step2_desc": "Facture, contrat, fiche de paie, devis...",
+      "step3": "Obtenez votre recommandation",
+      "step3_desc": "Niveau de risque + modèles IA adaptés",
+      "have_document": "Vous avez un document à analyser ?",
+      "login_link": "Connectez-vous"
+    },
+    "search": {
+      "placeholder": "Rechercher un type de document...",
+      "no_results": "Aucun résultat trouvé",
+      "popular": "Recherches populaires"
+    },
+    "result": {
+      "sensitivity_level": "Niveau de sensibilité",
+      "document_contains": "Ce que contient ce type de document",
+      "recommended_model": "Modèle recommandé",
+      "models_table": "Tableau des modèles IA",
+      "filter_jurisdiction": "Filtrer par juridiction",
+      "filter_risk": "Filtrer par niveau de risque",
+      "all_jurisdictions": "Toutes les juridictions",
+      "all_risks": "Tous les niveaux",
+      "local_alternatives": "Alternatives locales (recommandé pour documents sensibles)",
+      "back_to_dashboard": "Retour au tableau",
+      "analyze_real_doc": "Analyser un document réel"
+    },
+    "risk": {
+      "low": "Faible",
+      "medium": "Moyen",
+      "high": "Élevé",
+      "critical": "Critique",
+      "low_desc": "Pas de données personnelles identifiantes, informations publiques ou non stratégiques",
+      "medium_desc": "Données commerciales ou financières non sensibles",
+      "high_desc": "Données personnelles RGPD, informations financières détaillées, stratégie commerciale",
+      "critical_desc": "Données hautement sensibles — secrets industriels, santé, credentials, données clients massives"
+    },
+    "model": {
+      "model": "Modèle",
+      "editor": "Éditeur",
+      "jurisdiction": "Juridiction",
+      "retention": "Rétention",
+      "training": "Entraînement",
+      "risk": "Risque",
+      "recommendation": "Recommandation",
+      "recommended": "✅ Recommandé",
+      "caution": "⚠️ Avec précaution",
+      "not_recommended": "❌ Déconseillé",
+      "local_only": "🔒 Modèle local uniquement"
+    },
+    "auth": {
+      "login_title": "Connexion — Analyseur de documents",
+      "email": "Email",
+      "password": "Mot de passe",
+      "login_btn": "Se connecter",
+      "login_error": "Email ou mot de passe incorrect",
+      "request_access": "Demander un accès",
+      "access_info": "L'accès est compris dans les formations"
+    },
+    "analyze": {
+      "upload_title": "Analyser un document",
+      "upload_zone": "Glissez votre fichier ici ou cliquez pour parcourir",
+      "upload_formats": "Formats acceptés : PDF, DOCX, TXT, MD (max 5 MB)",
+      "analyze_btn": "Analyser",
+      "analyzing": "Analyse en cours sur le modèle local...",
+      "deleting": "Suppression du fichier en cours...",
+      "security_banner": "🔒 Votre document sera analysé sur un serveur local (VPS) et supprimé immédiatement après l'analyse. Aucune copie n'est conservée.",
+      "result_title": "Résultats de l'analyse",
+      "doc_type": "Type de document détecté",
+      "sensitive_data": "Données sensibles détectées",
+      "personal_data": "Données personnelles (RGPD)",
+      "financial_data": "Données financières",
+      "strategic_data": "Données stratégiques",
+      "credentials": "Identifiants et credentials",
+      "health_data": "Données de santé",
+      "none_found": "Aucune donnée sensible détectée",
+      "file_deleted": "✅ Votre fichier a été supprimé du serveur",
+      "deleted_at": "Supprimé à",
+      "analyze_another": "Analyser un autre document"
+    },
+    "about": {
+      "title": "À propos",
+      "methodology": "Méthodologie",
+      "methodology_text": "Les niveaux de sensibilité sont déterminés en fonction du type de données contenues dans chaque document (RGPD, financières, stratégiques, etc.). Les recommandations sont basées sur la juridiction du fournisseur d'IA, sa politique de rétention des données, et s'il utilise vos données pour entraîner ses modèles.",
+      "sources": "Sources",
+      "sources_text": "Les informations proviennent des conditions générales d'utilisation de chaque fournisseur d'IA, du RGPD, et des recommandations du CNIL.",
+      "disclaimer": "Avertissement",
+      "disclaimer_text": "Cet outil est fourni à titre informatif. Les politiques des fournisseurs d'IA peuvent changer. Vérifiez les CGU actuelles avant tout usage. Pour les documents hautement sensibles, consultez un DPO ou un avocat spécialisé en protection des données.",
+      "last_updated": "Dernière mise à jour de la base de données"
+    },
+    "footer": {
+      "disclaimer": "Cet outil est fourni à titre informatif et ne constitue pas un conseil juridique.",
+      "made_by": "Conçu par Alliance Digitale"
+    }
+  },
+  "en": {
+    "nav": {
+      "dashboard": "Dashboard",
+      "analyze": "Analyze",
+      "about": "About",
+      "login": "Login"
+    },
+    "home": {
+      "title": "AI Doc Security Checker",
+      "subtitle": "Check if you can safely use AI on your business documents",
+      "select_business_type": "Select your business type",
+      "autoentrepreneur": "Self-employed",
+      "autoentrepreneur_desc": "Freelancer or micro-enterprise",
+      "tpe": "Small business",
+      "tpe_desc": "Very Small Enterprise (less than 10 employees)",
+      "pme": "SME",
+      "pme_desc": "Small or Medium Enterprise (10-250 employees)",
+      "how_it_works": "How it works",
+      "step1": "Select your sector",
+      "step1_desc": "Accounting, sales, legal, HR...",
+      "step2": "Choose your document type",
+      "step2_desc": "Invoice, contract, payslip, quote...",
+      "step3": "Get your recommendation",
+      "step3_desc": "Risk level + suitable AI models",
+      "have_document": "Have a document to analyze?",
+      "login_link": "Log in"
+    },
+    "search": {
+      "placeholder": "Search for a document type...",
+      "no_results": "No results found",
+      "popular": "Popular searches"
+    },
+    "result": {
+      "sensitivity_level": "Sensitivity level",
+      "document_contains": "What this document type contains",
+      "recommended_model": "Recommended model",
+      "models_table": "AI models comparison table",
+      "filter_jurisdiction": "Filter by jurisdiction",
+      "filter_risk": "Filter by risk level",
+      "all_jurisdictions": "All jurisdictions",
+      "all_risks": "All levels",
+      "local_alternatives": "Local alternatives (recommended for sensitive documents)",
+      "back_to_dashboard": "Back to dashboard",
+      "analyze_real_doc": "Analyze a real document"
+    },
+    "risk": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "critical": "Critical",
+      "low_desc": "No personal identifying data, public or non-strategic information",
+      "medium_desc": "Non-sensitive commercial or financial data",
+      "high_desc": "GDPR personal data, detailed financial information, commercial strategy",
+      "critical_desc": "Highly sensitive data — trade secrets, health, credentials, massive customer data"
+    },
+    "model": {
+      "model": "Model",
+      "editor": "Editor",
+      "jurisdiction": "Jurisdiction",
+      "retention": "Retention",
+      "training": "Training",
+      "risk": "Risk",
+      "recommendation": "Recommendation",
+      "recommended": "✅ Recommended",
+      "caution": "⚠️ With caution",
+      "not_recommended": "❌ Not recommended",
+      "local_only": "🔒 Local model only"
+    },
+    "auth": {
+      "login_title": "Login — Document Analyzer",
+      "email": "Email",
+      "password": "Password",
+      "login_btn": "Log in",
+      "login_error": "Incorrect email or password",
+      "request_access": "Request access",
+      "access_info": "Access is included in training courses"
+    },
+    "analyze": {
+      "upload_title": "Analyze a document",
+      "upload_zone": "Drag your file here or click to browse",
+      "upload_formats": "Accepted formats: PDF, DOCX, TXT, MD (max 5 MB)",
+      "analyze_btn": "Analyze",
+      "analyzing": "Analyzing on local model...",
+      "deleting": "Deleting file...",
+      "security_banner": "🔒 Your document will be analyzed on a local server (VPS) and deleted immediately after analysis. No copy is kept.",
+      "result_title": "Analysis results",
+      "doc_type": "Detected document type",
+      "sensitive_data": "Sensitive data detected",
+      "personal_data": "Personal data (GDPR)",
+      "financial_data": "Financial data",
+      "strategic_data": "Strategic data",
+      "credentials": "Credentials and secrets",
+      "health_data": "Health data",
+      "none_found": "No sensitive data detected",
+      "file_deleted": "✅ Your file has been deleted from the server",
+      "deleted_at": "Deleted at",
+      "analyze_another": "Analyze another document"
+    },
+    "about": {
+      "title": "About",
+      "methodology": "Methodology",
+      "methodology_text": "Sensitivity levels are determined based on the type of data contained in each document (GDPR, financial, strategic, etc.). Recommendations are based on the AI provider's jurisdiction, data retention policy, and whether it uses your data to train its models.",
+      "sources": "Sources",
+      "sources_text": "Information comes from each AI provider's terms of service, GDPR, and CNIL recommendations.",
+      "disclaimer": "Disclaimer",
+      "disclaimer_text": "This tool is provided for informational purposes. AI providers' policies may change. Check current ToS before use. For highly sensitive documents, consult a DPO or data protection lawyer.",
+      "last_updated": "Last database update"
+    },
+    "footer": {
+      "disclaimer": "This tool is provided for informational purposes and does not constitute legal advice.",
+      "made_by": "Designed by Alliance Digitale"
+    }
+  }
+}

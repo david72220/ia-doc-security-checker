@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, tObj } from '../../i18n/index';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'fr' } }, { params: { lang: 'en' } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const i18n = tObj(lang);
+---
+
+<Layout>
+  <section class="py-12 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold text-slate-900 mb-8">{i18n.about.title}</h1>
+
+      <div class="space-y-8">
+        <!-- Methodology -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <h2 class="text-xl font-bold text-slate-800 mb-3">{i18n.about.methodology}</h2>
+          <p class="text-slate-600 leading-relaxed">{i18n.about.methodology_text}</p>
+        </div>
+
+        <!-- Sources -->
+        <div class="bg-white rounded-2xl border border-slate-200 p-6">
+          <h2 class="text-xl font-bold text-slate-800 mb-3">{i18n.about.sources}</h2>
+          <p class="text-slate-600 leading-relaxed">{i18n.about.sources_text}</p>
+          <ul class="mt-4 space-y-2 text-sm text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="text-blue-600">•</span>
+              <a href="https://openai.com/policies/terms-of-use" target="_blank" class="text-blue-600 hover:underline">OpenAI Terms of Use</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-blue-600">•</span>
+              <a href="https://www.anthropic.com/legal" target="_blank" class="text-blue-600 hover:underline">Anthropic Legal</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-blue-600">•</span>
+              <a href="https://mistral.ai/terms/" target="_blank" class="text-blue-600 hover:underline">Mistral AI Terms</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-blue-600">•</span>
+              <a href="https://www.cnil.fr/" target="_blank" class="text-blue-600 hover:underline">CNIL — Commission Nationale de l'Informatique et des Libertés</a>
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="text-blue-600">•</span>
+              <a href="https://gdpr.eu/" target="_blank" class="text-blue-600 hover:underline">GDPR.eu</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="bg-amber-50 border border-amber-200 rounded-2xl p-6">
+          <h2 class="text-xl font-bold text-amber-800 mb-3">⚠️ {i18n.about.disclaimer}</h2>
+          <p class="text-amber-700 leading-relaxed">{i18n.about.disclaimer_text}</p>
+        </div>
+
+        <!-- Last updated -->
+        <div class="text-center text-sm text-slate-400">
+          <p>{i18n.about.last_updated}: 30/06/2026</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

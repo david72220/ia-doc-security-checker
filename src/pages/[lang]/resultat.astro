@@ -1,0 +1,208 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getLangFromUrl, tObj } from '../../i18n/index';
+import sectorsFr from '../../data/sectors.fr.json';
+import sectorsEn from '../../data/sectors.en.json';
+import modelsFr from '../../data/models.fr.json';
+import modelsEn from '../../data/models.en.json';
+import recommendations from '../../data/recommendations.json';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'fr' } }, { params: { lang: 'en' } }];
+}
+
+const lang = getLangFromUrl(Astro.url);
+const i18n = tObj(lang);
+const sectors = (lang === 'fr' ? sectorsFr : sectorsEn).sectors;
+const models = (lang === 'fr' ? modelsFr : modelsEn).models;
+---
+
+<Layout>
+  <section class="py-8 px-4">
+    <div class="max-w-5xl mx-auto" id="result-container">
+      <!-- Loading state -->
+      <div id="loading" class="text-center py-12">
+        <div class="inline-block animate-spin rounded-full h-10 w-10 border-b-2 border-blue-600 mb-4"></div>
+        <p class="text-slate-500">{lang === 'fr' ? 'Chargement...' : 'Loading...'}</p>
+      </div>
+
+      <!-- Error state (no params) -->
+      <div id="error-state" class="hidden text-center py-12">
+        <p class="text-slate-500 mb-4">{lang === 'fr' ? 'Aucun document sélectionné.' : 'No document selected.'}</p>
+        <a href={`/${lang}/tableau`} class="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors">
+          ← {i18n.result.back_to_dashboard}
+        </a>
+      </div>
+
+      <!-- Result content (filled by JS) -->
+      <div id="content" class="hidden"></div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ sectors, models, recommendations, lang, i18n }}>
+    function init() {
+      const params = new URLSearchParams(window.location.search);
+      const sectorId = params.get('sector');
+      const docId = params.get('doc');
+
+      if (!sectorId || !docId) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-state').classList.remove('hidden');
+        return;
+      }
+
+      const sector = sectors.find(s => s.id === sectorId);
+      const doc = sector?.documents.find(d => d.id === docId);
+
+      if (!sector || !doc) {
+        document.getElementById('loading').classList.add('hidden');
+        document.getElementById('error-state').classList.remove('hidden');
+        return;
+      }
+
+      const sensitivity = doc.sensitivity;
+      const matrix = recommendations.matrix[sensitivity];
+
+      const findById = (id) => models.find(m => m.id === id);
+      const recommended = (matrix.recommended || []).map(findById).filter(Boolean);
+      const caution = (matrix.caution || []).map(findById).filter(Boolean);
+      const forbidden = (matrix.forbidden || []).map(findById).filter(Boolean);
+
+      // Best match
+      let bestMatch = null;
+      let bestReason = '';
+      if (sensitivity === 'critical') {
+        bestMatch = recommended.find(m => m.jurisdiction === 'LOCAL') || recommended[0] || null;
+        bestReason = lang === 'fr' ? 'Document critique : seul un modèle local garantit que vos données ne quittent jamais votre machine.' : 'Critical document: only a local model guarantees your data never leaves your machine.';
+      } else if (sensitivity === 'high') {
+        bestMatch = recommended.find(m => m.jurisdiction === 'FR/EU') || recommended.find(m => m.jurisdiction === 'LOCAL') || recommended[0] || null;
+        bestReason = lang === 'fr' ? 'Document sensible : privilégiez un modèle hébergé en UE ou local pour minimiser les risques.' : 'Sensitive document: prefer an EU-hosted or local model to minimize risks.';
+      } else if (sensitivity === 'medium') {
+        bestMatch = recommended.find(m => m.jurisdiction === 'FR/EU' && !m.training_on_data) || recommended[0] || null;
+        bestReason = lang === 'fr' ? 'Données modérées : un modèle européen sans entraînement sur vos données est recommandé.' : 'Moderate data: a European model without training on your data is recommended.';
+      } else {
+        bestMatch = recommended.find(m => m.jurisdiction === 'FR/EU') || recommended[0] || null;
+        bestReason = lang === 'fr' ? 'Faible sensibilité : tous les modèles sont utilisables, préférez un modèle EU par défaut.' : 'Low sensitivity: all models are usable, prefer an EU model by default.';
+      }
+
+      const riskEmoji = { low: '🟢', medium: '🟡', high: '🔴', critical: '🔴🔴' }[sensitivity];
+      const riskLabel = i18n.risk[sensitivity];
+      const riskDesc = i18n.risk[sensitivity + '_desc'];
+
+      const localModels = recommended.filter(m => m.jurisdiction === 'LOCAL');
+      const cloudRecommended = recommended.filter(m => m.jurisdiction !== 'LOCAL');
+
+      function modelTable(categoryModels, category) {
+        const catConfig = {
+          recommended: { bg: 'bg-green-50', border: 'border-green-200', header: 'text-green-800', icon: '✅', label: i18n.model.recommended },
+          caution: { bg: 'bg-yellow-50', border: 'border-yellow-200', header: 'text-yellow-800', icon: '⚠️', label: i18n.model.caution },
+          forbidden: { bg: 'bg-red-50', border: 'border-red-200', header: 'text-red-800', icon: '❌', label: i18n.model.not_recommended },
+        };
+        const c = catConfig[category];
+        return `<div class="rounded-xl border ${c.border} ${c.bg} overflow-hidden mb-4">
+          <div class="px-4 py-3 ${c.header} font-semibold flex items-center gap-2">
+            <span class="text-lg">${c.icon}</span><span>${c.label}</span>
+            <span class="ml-auto text-sm opacity-70">(${categoryModels.length})</span>
+          </div>
+          <div class="overflow-x-auto"><table class="model-table w-full">
+            <thead class="bg-white/50"><tr class="text-left text-sm text-slate-600">
+              <th class="px-4 py-2 font-medium">${i18n.model.model}</th>
+              <th class="px-4 py-2 font-medium">${i18n.model.jurisdiction}</th>
+              <th class="px-4 py-2 font-medium">${i18n.model.retention}</th>
+              <th class="px-4 py-2 font-medium">${i18n.model.training}</th>
+              <th class="px-4 py-2 font-medium">${i18n.model.risk}</th>
+            </tr></thead>
+            <tbody>${categoryModels.map(m => `<tr class="border-t border-slate-200 text-sm hover:bg-white/30">
+              <td class="px-4 py-3" data-label="${i18n.model.model}"><div class="font-medium text-slate-800">${m.label}</div><div class="text-xs text-slate-500">${m.editor}</div></td>
+              <td class="px-4 py-3" data-label="${i18n.model.jurisdiction}"><span class="text-lg">${m.jurisdiction_flag}</span><span class="ml-1 text-xs text-slate-600">${m.jurisdiction}</span></td>
+              <td class="px-4 py-3 text-slate-600" data-label="${i18n.model.retention}">${m.data_retention}</td>
+              <td class="px-4 py-3" data-label="${i18n.model.training}">${m.training_on_data ? '<span class="text-red-600 font-medium">⚠️</span>' : '<span class="text-green-600">✓</span>'}</td>
+              <td class="px-4 py-3" data-label="${i18n.model.risk}"><span class="px-2 py-1 rounded text-xs font-medium ${m.risk_level === 'none' ? 'bg-green-100 text-green-700' : m.risk_level === 'low' ? 'bg-green-100 text-green-700' : m.risk_level === 'medium' ? 'bg-yellow-100 text-yellow-700' : m.risk_level === 'high' ? 'bg-orange-100 text-orange-700' : 'bg-red-100 text-red-700'}">${m.risk_description}</span></td>
+            </tr>`).join('')}</tbody>
+          </table></div>
+        </div>`;
+      }
+
+      let html = `
+        <div class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+          <a href="/${lang}" class="hover:underline">${i18n.nav.dashboard}</a>
+          <span>›</span><span>${sector.label}</span><span>›</span>
+          <span class="text-slate-800 font-medium">${doc.label}</span>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 mb-6">
+          <h1 class="text-3xl font-bold text-slate-900 mb-2">${doc.label}</h1>
+          <p class="text-slate-600 mb-4">${sector.label}</p>
+          <div class="mb-4">
+            <p class="text-sm text-slate-500 mb-2">${i18n.result.sensitivity_level}</p>
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-xl border-2 ${sensitivity === 'low' ? 'bg-green-100 text-green-800 border-green-300' : sensitivity === 'medium' ? 'bg-yellow-100 text-yellow-800 border-yellow-300' : sensitivity === 'high' ? 'bg-red-100 text-red-800 border-red-300' : 'bg-red-900 text-white border-red-700 badge-critical'} font-semibold">
+              <span class="text-lg">${riskEmoji}</span><span>${riskLabel}</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-600 max-w-2xl">${riskDesc}</p>
+          </div>
+          <div class="mt-4">
+            <p class="text-sm font-medium text-slate-700 mb-2">${i18n.result.document_contains}:</p>
+            <div class="flex flex-wrap gap-2">
+              ${doc.sensitive_data.map(d => `<span class="px-3 py-1 bg-slate-100 text-slate-700 rounded-lg text-sm">${d}</span>`).join('')}
+            </div>
+            ${doc.rgpd_relevant ? `<p class="mt-3 text-sm text-orange-600"><span class="font-medium">⚠️ RGPD</span> — ${lang === 'fr' ? 'Ce document contient des données personnelles' : 'This document contains personal data'}</p>` : ''}
+          </div>
+        </div>
+      `;
+
+      // Recommendation
+      if (bestMatch) {
+        html += `
+          <div class="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-6 text-white shadow-lg mb-6">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0 bg-white/20 rounded-xl p-3">
+                <svg class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              </div>
+              <div class="flex-1">
+                <p class="text-blue-200 text-sm font-medium uppercase tracking-wide mb-1">${i18n.result.recommended_model}</p>
+                <h3 class="text-2xl font-bold mb-1">${bestMatch.label}</h3>
+                <p class="text-blue-100 text-sm mb-3">${bestMatch.editor} · ${bestMatch.jurisdiction_flag} ${bestMatch.jurisdiction}</p>
+                <p class="text-blue-50 text-sm leading-relaxed">${bestReason}</p>
+                ${bestMatch.notes ? `<p class="mt-2 text-blue-200 text-xs italic">${bestMatch.notes}</p>` : ''}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // Local alternatives
+      if (localModels.length > 0 && (sensitivity === 'high' || sensitivity === 'critical')) {
+        html += `
+          <div class="mb-6 bg-slate-900 rounded-2xl p-6 text-white">
+            <h3 class="text-lg font-bold mb-3 flex items-center gap-2">🖥️ ${i18n.result.local_alternatives}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              ${localModels.map(m => `<div class="bg-slate-800 rounded-xl p-4"><div class="font-semibold text-white">${m.label}</div><div class="text-sm text-slate-400 mt-1">${m.notes}</div><div class="mt-2 text-xs text-green-400">✓ ${m.risk_description}</div></div>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Model tables
+      html += '<div class="space-y-6">';
+      if (cloudRecommended.length > 0) html += modelTable(cloudRecommended, 'recommended');
+      if (caution.length > 0) html += modelTable(caution, 'caution');
+      if (forbidden.length > 0) html += modelTable(forbidden, 'forbidden');
+      html += '</div>';
+
+      // Actions
+      html += `
+        <div class="flex flex-wrap gap-4 mt-8 justify-center">
+          <a href="/${lang}/tableau" class="px-6 py-3 bg-slate-100 text-slate-700 font-medium rounded-xl hover:bg-slate-200 transition-colors">← ${i18n.result.back_to_dashboard}</a>
+          <a href="/${lang}/login" class="px-6 py-3 bg-blue-600 text-white font-medium rounded-xl hover:bg-blue-700 transition-colors">${i18n.result.analyze_real_doc} →</a>
+        </div>
+      `;
+
+      document.getElementById('loading').classList.add('hidden');
+      const content = document.getElementById('content');
+      content.innerHTML = html;
+      content.classList.remove('hidden');
+    }
+
+    init();
+  </script>
+</Layout>
