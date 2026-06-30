@@ -1,168 +1,29 @@
 {
   "sectors": [
     {
-      "id": "compta",
-      "label": "Accounting & Finance",
-      "icon": "calculator",
+      "id": "direction",
+      "label": "Executive & Governance",
+      "icon": "building",
       "documents": [
-        {
-          "id": "facture",
-          "label": "Invoice",
-          "sensitivity": "medium",
-          "sensitive_data": ["Customer name", "Postal address", "VAT/Tax ID", "Amount excl./incl. tax", "VAT"],
-          "rgpd_relevant": true,
-          "description": "Contains customer and financial data"
-        },
-        {
-          "id": "bilan",
-          "label": "Balance sheet",
-          "sensitivity": "high",
-          "sensitive_data": ["Detailed financial data", "Net result", "Equity", "Debts", "Assets"],
-          "rgpd_relevant": false,
-          "description": "Complete view of the company's financial position"
-        },
-        {
-          "id": "compte-resultat",
-          "label": "Income statement",
-          "sensitivity": "high",
-          "sensitive_data": ["Revenue", "Expenses", "Profit/Loss", "Aggregated salaries"],
-          "rgpd_relevant": false,
-          "description": "Details company revenues and expenses"
-        },
-        {
-          "id": "liasse-fiscale",
-          "label": "Tax return",
-          "sensitivity": "high",
-          "sensitive_data": ["Complete tax data", "Taxable income", "Deductions", "Tax credits"],
-          "rgpd_relevant": false,
-          "description": "Annual tax return — strategic company data"
-        },
-        {
-          "id": "declaration-tva",
-          "label": "VAT declaration",
-          "sensitivity": "medium",
-          "sensitive_data": ["Collected VAT amount", "Deductible VAT", "VAT number"],
-          "rgpd_relevant": false,
-          "description": "Monthly or quarterly VAT return"
-        },
-        {
-          "id": "releve-bancaire",
-          "label": "Bank statement",
-          "sensitivity": "high",
-          "sensitive_data": ["IBAN", "Transactions", "Balance", "Bank details", "Transfers"],
-          "rgpd_relevant": true,
-          "description": "Contains sensitive financial and banking data"
-        }
-      ]
-    },
-    {
-      "id": "commercial",
-      "label": "Sales & Commercial",
-      "icon": "briefcase",
-      "documents": [
-        {
-          "id": "devis",
-          "label": "Quote / Estimate",
-          "sensitivity": "medium",
-          "sensitive_data": ["Customer name", "Contact details", "Pricing", "Commercial terms"],
-          "rgpd_relevant": true,
-          "description": "Commercial proposal — moderate customer data"
-        },
-        {
-          "id": "bon-commande",
-          "label": "Purchase order",
-          "sensitivity": "medium",
-          "sensitive_data": ["Customer name", "Order details", "Amount", "Delivery terms"],
-          "rgpd_relevant": true,
-          "description": "Customer order confirmation"
-        },
-        {
-          "id": "contrat-client",
-          "label": "Customer contract",
-          "sensitivity": "high",
-          "sensitive_data": ["Name/company name", "Contract terms", "Penalties", "Confidentiality clauses"],
-          "rgpd_relevant": true,
-          "description": "Contractual commitment — legal and commercial data"
-        },
-        {
-          "id": "proposition-commerciale",
-          "label": "Commercial proposal",
-          "sensitivity": "medium",
-          "sensitive_data": ["Pricing strategy", "Competitive advantages", "Potential customer data"],
-          "rgpd_relevant": true,
-          "description": "Sales document — moderate strategic data"
-        },
-        {
-          "id": "liste-prix",
-          "label": "Price list",
-          "sensitivity": "low",
-          "sensitive_data": ["Prices", "Discount terms"],
-          "rgpd_relevant": false,
-          "description": "Commercial information — generally public or semi-public"
-        },
-        {
-          "id": "catalogue",
-          "label": "Product catalog",
-          "sensitivity": "low",
-          "sensitive_data": ["Product descriptions", "Public prices"],
-          "rgpd_relevant": false,
-          "description": "Presentation document — public information"
-        }
+        { "id": "statuts-pv", "label": "Articles of association, AG minutes, management decisions", "sensitivity": "high", "sensitive_data": ["Shareholder identities", "Capital distribution", "Strategic decisions", "Votes"], "rgpd_relevant": true, "description": "Founding documents and governance decisions" },
+        { "id": "organigramme", "label": "Org charts, power delegations", "sensitivity": "medium", "sensitive_data": ["Executive names", "Hierarchy", "Delegated powers"], "rgpd_relevant": true, "description": "Organizational structure and delegations" },
+        { "id": "budgets-strategiques", "label": "Budgets, strategic plans, dashboards", "sensitivity": "high", "sensitive_data": ["Strategic financial data", "Business objectives", "Forecasts"], "rgpd_relevant": false, "description": "Strategic business steering" },
+        { "id": "comptes-rendus-comex", "label": "EXEC minutes, management committee reports", "sensitivity": "high", "sensitive_data": ["Internal decisions", "Strategy", "Financial data", "Employee evaluations"], "rgpd_relevant": true, "description": "Executive reports — strategic data" },
+        { "id": "cartographie-risques", "label": "Risk mapping, action plans", "sensitivity": "high", "sensitive_data": ["Internal vulnerabilities", "Mitigation plans", "Strategic risks"], "rgpd_relevant": false, "description": "Risk analysis — sensitive company data" }
       ]
     },
     {
       "id": "juridique",
-      "label": "Legal",
+      "label": "Legal & Compliance",
       "icon": "scale",
       "documents": [
-        {
-          "id": "contrat",
-          "label": "Contract",
-          "sensitivity": "high",
-          "sensitive_data": ["Named parties", "Financial clauses", "Termination conditions", "Confidentiality"],
-          "rgpd_relevant": true,
-          "description": "Legal document — personal data and legal commitments"
-        },
-        {
-          "id": "statuts-societe",
-          "label": "Articles of incorporation",
-          "sensitivity": "high",
-          "sensitive_data": ["Shareholder identities", "Capital distribution", "Powers", "Registered office"],
-          "rgpd_relevant": true,
-          "description": "Founding document — strategic company information"
-        },
-        {
-          "id": "procuration",
-          "label": "Power of attorney",
-          "sensitivity": "high",
-          "sensitive_data": ["Attorney identity", "Scope of powers", "Duration", "Signature"],
-          "rgpd_relevant": true,
-          "description": "Delegates authority — personal and legal data"
-        },
-        {
-          "id": "mise-en-demeure",
-          "label": "Formal notice / Demand letter",
-          "sensitivity": "medium",
-          "sensitive_data": ["Recipient identity", "Claimed amount", "Dispute subject"],
-          "rgpd_relevant": true,
-          "description": "Pre-litigation document — moderate data"
-        },
-        {
-          "id": "acte-notarial",
-          "label": "Notarial deed",
-          "sensitivity": "critical",
-          "sensitive_data": ["Estate data", "Complete identities", "Real estate", "Amounts", "Wills"],
-          "rgpd_relevant": true,
-          "description": "Authentic deed — highly sensitive data, professional secrecy"
-        },
-        {
-          "id": "nda",
-          "label": "Non-disclosure agreement (NDA)",
-          "sensitivity": "high",
-          "sensitive_data": ["Confidential information", "Parties", "Commitment duration", "Penalties"],
-          "rgpd_relevant": true,
-          "description": "Protects trade secrets — strategic data"
-        }
+        { "id": "contrats-clients", "label": "Client contracts, supplier contracts, NDAs", "sensitivity": "high", "sensitive_data": ["Named parties", "Financial clauses", "Confidentiality", "Penalties"], "rgpd_relevant": true, "description": "Contractual commitments — legal and commercial data" },
+        { "id": "cgv-cgu", "label": "T&Cs, terms of use, appendices, amendments", "sensitivity": "medium", "sensitive_data": ["Commercial terms", "Payment terms", "Liabilities"], "rgpd_relevant": false, "description": "General terms — moderately sensitive" },
+        { "id": "contentieux", "label": "Litigation, pre-litigation, formal notices", "sensitivity": "high", "sensitive_data": ["Party identities", "Claim amounts", "Legal strategy"], "rgpd_relevant": true, "description": "Pre-litigation and litigation documents" },
+        { "id": "consultations-juridiques", "label": "Legal opinions, internal memos, notes", "sensitivity": "high", "sensitive_data": ["Legal advice", "Risk analysis", "Defense strategy"], "rgpd_relevant": false, "description": "Internal legal notes — professional secrecy" },
+        { "id": "registre-rgpd", "label": "GDPR processing register, privacy policies", "sensitivity": "high", "sensitive_data": ["Personal data processed", "Purposes", "Recipients"], "rgpd_relevant": true, "description": "GDPR compliance — personal data" },
+        { "id": "registres-conformite", "label": "Compliance registers, audits, control evidence", "sensitivity": "high", "sensitive_data": ["Audit results", "Control evidence", "Regulatory data"], "rgpd_relevant": true, "description": "Regulatory compliance documents" },
+        { "id": "propriete-intellectuelle", "label": "Intellectual property, trademarks, licenses", "sensitivity": "critical", "sensitive_data": ["Trade secrets", "Patents", "Trademarks", "Licenses"], "rgpd_relevant": false, "description": "Intellectual property — critical strategic assets" }
       ]
     },
     {
@@ -170,54 +31,42 @@
       "label": "Human Resources",
       "icon": "users",
       "documents": [
-        {
-          "id": "fiche-paie",
-          "label": "Payslip / Salary slip",
-          "sensitivity": "high",
-          "sensitive_data": ["Name", "First name", "Gross/net salary", "Social security number", "Address", "Contributions"],
-          "rgpd_relevant": true,
-          "description": "Personal and financial employee data — strict GDPR"
-        },
-        {
-          "id": "contrat-travail",
-          "label": "Employment contract",
-          "sensitivity": "high",
-          "sensitive_data": ["Identity", "Compensation", "Qualification", "Probation period", "Non-compete clause"],
-          "rgpd_relevant": true,
-          "description": "Agreement between employer and employee — personal data"
-        },
-        {
-          "id": "cv-candidat",
-          "label": "Candidate CV / Resume",
-          "sensitivity": "high",
-          "sensitive_data": ["Name", "First name", "Contact details", "Experience", "Degrees", "Personal data"],
-          "rgpd_relevant": true,
-          "description": "Candidate personal data — GDPR recruitment rules"
-        },
-        {
-          "id": "evaluation-employe",
-          "label": "Employee evaluation",
-          "sensitivity": "high",
-          "sensitive_data": ["Name", "Performance", "Feedback", "Objectives", "Envisaged salary"],
-          "rgpd_relevant": true,
-          "description": "Personal and professional data — confidential"
-        },
-        {
-          "id": "dossier-medical-pro",
-          "label": "Occupational health record",
-          "sensitivity": "critical",
-          "sensitive_data": ["Health data", "Fitness for work", "Vaccinations", "Occupational diseases", "SSN"],
-          "rgpd_relevant": true,
-          "description": "Health data — medical secrecy, enhanced GDPR protection"
-        },
-        {
-          "id": "convention-collective",
-          "label": "Collective agreement",
-          "sensitivity": "low",
-          "sensitive_data": ["Sector agreements", "Salary scales", "Conventional provisions"],
-          "rgpd_relevant": false,
-          "description": "Public document — no personal data"
-        }
+        { "id": "cv-lettres", "label": "CVs, cover letters, job descriptions", "sensitivity": "high", "sensitive_data": ["Name", "First name", "Contact details", "Experience", "Degrees"], "rgpd_relevant": true, "description": "Recruitment — candidate personal data" },
+        { "id": "contrats-travail", "label": "Employment contracts, amendments, specific clauses", "sensitivity": "high", "sensitive_data": ["Identity", "Compensation", "Qualification", "Restrictive clauses"], "rgpd_relevant": true, "description": "Employer/employee commitments — personal data" },
+        { "id": "dossiers-salaries", "label": "Employee files, evaluations, disciplinary, absences", "sensitivity": "high", "sensitive_data": ["Personal data", "Evaluations", "Disciplinary", "Medical data"], "rgpd_relevant": true, "description": "Employee files — strict GDPR" },
+        { "id": "bulletins-paie", "label": "Pays slips, payroll variables, expense reports", "sensitivity": "high", "sensitive_data": ["Name", "Gross/net salary", "SSN", "Contributions", "IBAN"], "rgpd_relevant": true, "description": "Personal and financial data — strict GDPR" },
+        { "id": "entretiens-annuels", "label": "Annual reviews, training plans", "sensitivity": "high", "sensitive_data": ["Evaluations", "Objectives", "Feedback", "Training"], "rgpd_relevant": true, "description": "Employee evaluations — confidential data" },
+        { "id": "registres-personnel", "label": "Personnel registers, hiring documents, contract endings", "sensitivity": "high", "sensitive_data": ["Identity", "Hire/departure dates", "Departure reasons"], "rgpd_relevant": true, "description": "Mandatory registers — personal data" },
+        { "id": "medicaux-sociaux", "label": "Sensitive medical/social documents, attestations", "sensitivity": "critical", "sensitive_data": ["Health data", "Fitness", "Sick leave", "SSN"], "rgpd_relevant": true, "description": "Health data — enhanced GDPR, critical" }
+      ]
+    },
+    {
+      "id": "finance",
+      "label": "Finance, Accounting & Tax",
+      "icon": "calculator",
+      "documents": [
+        { "id": "factures", "label": "Customer and supplier invoices", "sensitivity": "medium", "sensitive_data": ["Customer/supplier name", "VAT/Tax ID", "Amount excl./incl. tax", "VAT", "Address"], "rgpd_relevant": true, "description": "Invoices — customer and financial data" },
+        { "id": "devis-bons", "label": "Quotes, purchase orders, delivery notes", "sensitivity": "medium", "sensitive_data": ["Customer name", "Order details", "Pricing", "Terms"], "rgpd_relevant": true, "description": "Commercial documents — moderate data" },
+        { "id": "releves-bancaires", "label": "Bank statements, reconciliations, cash flow", "sensitivity": "high", "sensitive_data": ["IBAN", "Transactions", "Balance", "Cash flows"], "rgpd_relevant": true, "description": "Sensitive banking data" },
+        { "id": "grand-livre", "label": "General ledger, trial balance, accounting journals", "sensitivity": "high", "sensitive_data": ["Complete financial data", "Accounts", "Amounts"], "rgpd_relevant": false, "description": "Detailed accounting — strategic data" },
+        { "id": "bilans-comptes", "label": "Balance sheets, income statements, appendices", "sensitivity": "high", "sensitive_data": ["Net result", "Equity", "Debts", "Revenue"], "rgpd_relevant": false, "description": "Financial statements — complete company view" },
+        { "id": "previsionnels", "label": "Financial forecasts, business plans", "sensitivity": "high", "sensitive_data": ["Financial forecasts", "Strategy", "Investments"], "rgpd_relevant": false, "description": "Forecasts — strategic data" },
+        { "id": "declarations-fiscales", "label": "Tax returns, social returns, VAT, corporate tax", "sensitivity": "high", "sensitive_data": ["Tax data", "Amounts", "Tax ID"], "rgpd_relevant": true, "description": "Mandatory returns — sensitive data" },
+        { "id": "rapports-audit", "label": "Audit reports, supporting documents, accounting vouchers", "sensitivity": "high", "sensitive_data": ["Audit results", "Anomalies", "Vouchers"], "rgpd_relevant": true, "description": "Audits — financial and regulatory data" }
+      ]
+    },
+    {
+      "id": "commercial",
+      "label": "Sales & Customer Relations",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "propositions-commerciales", "label": "Commercial proposals, offers, quotes", "sensitivity": "medium", "sensitive_data": ["Pricing", "Terms", "Customer data", "Pricing strategy"], "rgpd_relevant": true, "description": "Proposals — moderate commercial data" },
+        { "id": "presentations-commerciales", "label": "Sales presentations, pitch decks", "sensitivity": "medium", "sensitive_data": ["Strategy", "Competitive advantages", "Potential customer data"], "rgpd_relevant": false, "description": "Presentations — moderate data" },
+        { "id": "fiches-prospects", "label": "Prospect files, call reports", "sensitivity": "high", "sensitive_data": ["Names", "Contact details", "Call history", "Personal data"], "rgpd_relevant": true, "description": "Prospecting — GDPR personal data" },
+        { "id": "fiches-clients", "label": "Customer files, exchange history", "sensitivity": "high", "sensitive_data": ["Customer data", "History", "Preferences", "Contact"], "rgpd_relevant": true, "description": "Customer base — personal data" },
+        { "id": "contrats-signes", "label": "Signed contracts, orders, renewals", "sensitivity": "high", "sensitive_data": ["Parties", "Financial terms", "Commitments", "Penalties"], "rgpd_relevant": true, "description": "Contracts — legal and commercial data" },
+        { "id": "reclamations", "label": "Commercial complaints, commercial disputes", "sensitivity": "medium", "sensitive_data": ["Customer identity", "Dispute subject", "Amount"], "rgpd_relevant": true, "description": "Complaints — moderate data" },
+        { "id": "grilles-tarifaires", "label": "Price lists, discounts, pricing policies", "sensitivity": "high", "sensitive_data": ["Margins", "Internal prices", "Competitive strategy"], "rgpd_relevant": false, "description": "Pricing strategy — sensitive commercial data" }
       ]
     },
     {
@@ -225,93 +74,123 @@
       "label": "Marketing & Communication",
       "icon": "megaphone",
       "documents": [
-        {
-          "id": "brief-campagne",
-          "label": "Campaign brief",
-          "sensitivity": "medium",
-          "sensitive_data": ["Strategy", "Budget", "Targets", "Commercial objectives"],
-          "rgpd_relevant": false,
-          "description": "Piloting document — moderate strategic data"
-        },
-        {
-          "id": "etude-marche",
-          "label": "Market study",
-          "sensitivity": "high",
-          "sensitive_data": ["Competitive data", "Market share", "Pricing strategy", "Customer segments"],
-          "rgpd_relevant": false,
-          "description": "Strategic data — competitive advantage"
-        },
-        {
-          "id": "liste-contacts-clients",
-          "label": "Customer contact list",
-          "sensitivity": "critical",
-          "sensitive_data": ["Names", "Emails", "Phone numbers", "Addresses", "Purchase history", "Segmentation"],
-          "rgpd_relevant": true,
-          "description": "Customer database — critical GDPR, massive personal data"
-        },
-        {
-          "id": "strategie-prix",
-          "label": "Pricing strategy",
-          "sensitivity": "high",
-          "sensitive_data": ["Margins", "Cost prices", "Competitive strategy", "Internal pricing grids"],
-          "rgpd_relevant": false,
-          "description": "Strategic document — sensitive commercial data"
-        },
-        {
-          "id": "plan-communication",
-          "label": "Communication plan",
-          "sensitivity": "medium",
-          "sensitive_data": ["Communication budget", "Channels", "Timeline", "Key messages"],
-          "rgpd_relevant": false,
-          "description": "Piloting document — moderate data"
-        }
+        { "id": "plans-marketing", "label": "Marketing plans, editorial plans", "sensitivity": "medium", "sensitive_data": ["Budget", "Strategy", "Timeline", "Targets"], "rgpd_relevant": false, "description": "Marketing steering — moderate data" },
+        { "id": "etudes-marche", "label": "Market studies, benchmarks, competitive intelligence", "sensitivity": "high", "sensitive_data": ["Competitive data", "Market share", "Strategy"], "rgpd_relevant": false, "description": "Market intelligence — strategic data" },
+        { "id": "brand-book", "label": "Brand book, graphic charter, brand messages", "sensitivity": "low", "sensitive_data": ["Visual identity", "Charter"], "rgpd_relevant": false, "description": "Brand identity — public data" },
+        { "id": "campagnes-emailing", "label": "Email campaigns, ads, landing pages", "sensitivity": "medium", "sensitive_data": ["Email lists", "Targets", "Content"], "rgpd_relevant": true, "description": "Campaigns — moderate, GDPR if emails" },
+        { "id": "contenus-sociaux", "label": "Visuals, videos, social media content", "sensitivity": "low", "sensitive_data": ["Public content"], "rgpd_relevant": false, "description": "Public content — low sensitivity" },
+        { "id": "communiques-presse", "label": "Press releases, press kits", "sensitivity": "low", "sensitive_data": ["Public information"], "rgpd_relevant": false, "description": "Press relations — public data" },
+        { "id": "rapports-performance", "label": "Performance reports, analytics, leads", "sensitivity": "medium", "sensitive_data": ["Performance data", "Leads", "Conversions"], "rgpd_relevant": true, "description": "Marketing analytics — moderate data" },
+        { "id": "partenariats", "label": "Partnerships, co-marketing, sponsoring", "sensitivity": "medium", "sensitive_data": ["Financial terms", "Parties"], "rgpd_relevant": true, "description": "Partnerships — moderate data" }
+      ]
+    },
+    {
+      "id": "achats",
+      "label": "Purchasing & Suppliers",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "appels-offres", "label": "Tenders, specifications", "sensitivity": "medium", "sensitive_data": ["Specifications", "Budget", "Selection criteria"], "rgpd_relevant": false, "description": "Purchasing — moderate data" },
+        { "id": "contrats-fournisseurs", "label": "Supplier contracts, SLAs, service terms", "sensitivity": "high", "sensitive_data": ["Financial terms", "SLA", "Penalties", "Parties"], "rgpd_relevant": true, "description": "Supplier contracts — sensitive data" },
+        { "id": "comparatifs-offres", "label": "Offer comparisons, evaluation grids", "sensitivity": "medium", "sensitive_data": ["Prices", "Criteria", "Evaluations"], "rgpd_relevant": false, "description": "Comparisons — moderate data" },
+        { "id": "commandes-fournisseurs", "label": "Orders, confirmations, follow-ups", "sensitivity": "medium", "sensitive_data": ["Supplier", "Amount", "Details"], "rgpd_relevant": false, "description": "Order tracking — moderate data" },
+        { "id": "suivi-qualite-fournisseur", "label": "Supplier quality tracking, disputes, penalties", "sensitivity": "medium", "sensitive_data": ["Evaluations", "Disputes", "Penalties"], "rgpd_relevant": false, "description": "Supplier quality — moderate data" },
+        { "id": "homologation-fournisseurs", "label": "Supplier homologation registers", "sensitivity": "medium", "sensitive_data": ["Supplier list", "Status", "Company data"], "rgpd_relevant": false, "description": "Register — moderate data" },
+        { "id": "conformite-fournisseurs", "label": "Supplier compliance, insurance, attestations", "sensitivity": "medium", "sensitive_data": ["Attestations", "Insurance", "Compliance"], "rgpd_relevant": false, "description": "Compliance — moderate data" }
+      ]
+    },
+    {
+      "id": "operations",
+      "label": "Operations, Production & Quality",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "procedures-operatoires", "label": "Operational procedures, operating modes", "sensitivity": "medium", "sensitive_data": ["Internal processes", "Know-how"], "rgpd_relevant": false, "description": "Procedures — moderate data" },
+        { "id": "instructions-travail", "label": "Work instructions, technical sheets", "sensitivity": "medium", "sensitive_data": ["Processes", "Technical specs"], "rgpd_relevant": false, "description": "Instructions — moderate data" },
+        { "id": "plans-production", "label": "Production plans, scheduling", "sensitivity": "medium", "sensitive_data": ["Capacity", "Schedule", "Resources"], "rgpd_relevant": false, "description": "Production — moderate data" },
+        { "id": "rapports-activite", "label": "Activity reports, incidents, non-conformities", "sensitivity": "medium", "sensitive_data": ["Incidents", "Non-conformities", "Operational data"], "rgpd_relevant": false, "description": "Operational tracking — moderate data" },
+        { "id": "controles-qualite", "label": "Quality controls, test plans, acceptance reports", "sensitivity": "medium", "sensitive_data": ["Test results", "Quality", "Compliance"], "rgpd_relevant": false, "description": "Quality — moderate data" },
+        { "id": "maintenance", "label": "Maintenance, interventions, machine records", "sensitivity": "medium", "sensitive_data": ["Equipment", "Interventions", "Costs"], "rgpd_relevant": false, "description": "Maintenance — moderate data" },
+        { "id": "hse-securite", "label": "HSE / safety, instructions, risk analyses", "sensitivity": "high", "sensitive_data": ["Risks", "Vulnerabilities", "Safety instructions"], "rgpd_relevant": false, "description": "Health safety — sensitive data" },
+        { "id": "tracabilite", "label": "Traceability, batches, execution tracking", "sensitivity": "medium", "sensitive_data": ["Batches", "Traceability", "Production data"], "rgpd_relevant": false, "description": "Traceability — moderate data" }
       ]
     },
     {
       "id": "it",
-      "label": "IT & Technical",
+      "label": "IT, Cybersecurity & Systems",
       "icon": "code",
       "documents": [
-        {
-          "id": "code-source",
-          "label": "Source code",
-          "sensitivity": "critical",
-          "sensitive_data": ["Intellectual property", "Business logic", "Algorithms", "API keys in code"],
-          "rgpd_relevant": true,
-          "description": "Intellectual property — trade secret, critical data"
-        },
-        {
-          "id": "architecture-technique",
-          "label": "Technical architecture",
-          "sensitivity": "high",
-          "sensitive_data": ["Infrastructure", "Network topology", "Access points", "Potential vulnerabilities"],
-          "rgpd_relevant": false,
-          "description": "Technical document — strategic security data"
-        },
-        {
-          "id": "credentials-api",
-          "label": "Credentials / API keys",
-          "sensitivity": "critical",
-          "sensitive_data": ["API keys", "Passwords", "Tokens", "Secrets", "Certificates"],
-          "rgpd_relevant": false,
-          "description": "Authentication data — critical, never expose"
-        },
-        {
-          "id": "base-donnees-clients",
-          "label": "Customer database",
-          "sensitivity": "critical",
-          "sensitive_data": ["Massive personal data", "History", "Preferences", "Financial data"],
-          "rgpd_relevant": true,
-          "description": "Large-scale personal data — critical GDPR"
-        },
-        {
-          "id": "schema-bdd",
-          "label": "Database schema",
-          "sensitivity": "high",
-          "sensitive_data": ["Data structure", "Tables", "Relations", "Business logic"],
-          "rgpd_relevant": false,
-          "description": "Data architecture — strategic information"
-        }
+        { "id": "comptes-utilisateurs", "label": "User accounts, access rights, roles", "sensitivity": "high", "sensitive_data": ["Credentials", "Rights", "Personal data"], "rgpd_relevant": true, "description": "Access management — sensitive data" },
+        { "id": "politiques-securite", "label": "Security policies, IT charter", "sensitivity": "medium", "sensitive_data": ["Security rules", "Instructions"], "rgpd_relevant": false, "description": "IT security — moderate data" },
+        { "id": "logs-incidents", "label": "Event logs, logs, incidents", "sensitivity": "high", "sensitive_data": ["Logs", "IP", "Connection data", "Incidents"], "rgpd_relevant": true, "description": "Logs — sensitive, potentially GDPR" },
+        { "id": "sauvegardes-pra", "label": "Backups, DRP, BCP", "sensitivity": "high", "sensitive_data": ["Critical data", "Architecture", "Procedures"], "rgpd_relevant": false, "description": "Continuity — sensitive data" },
+        { "id": "inventaire-si", "label": "Hardware and software inventory", "sensitivity": "medium", "sensitive_data": ["Equipment", "Licenses", "Configuration"], "rgpd_relevant": false, "description": "Inventory — moderate data" },
+        { "id": "schemas-reseau", "label": "Network diagrams, architecture, technical documentation", "sensitivity": "high", "sensitive_data": ["Network topology", "Access points", "Vulnerabilities"], "rgpd_relevant": false, "description": "Architecture — strategic data" },
+        { "id": "tickets-support", "label": "Support tickets, changes, versions", "sensitivity": "medium", "sensitive_data": ["Tickets", "Requests", "Users"], "rgpd_relevant": true, "description": "IT support — moderate data" },
+        { "id": "secrets-credentials", "label": "Passwords, secrets, API keys, certificates", "sensitivity": "critical", "sensitive_data": ["Passwords", "API keys", "Tokens", "Certificates", "Secrets"], "rgpd_relevant": false, "description": "Credentials — critical, never expose" }
+      ]
+    },
+    {
+      "id": "projets",
+      "label": "Projects & Management",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "cahiers-charges", "label": "Specifications, requirement statements", "sensitivity": "medium", "sensitive_data": ["Specifications", "Requirements", "Budget"], "rgpd_relevant": false, "description": "Projects — moderate data" },
+        { "id": "roadmaps", "label": "Roadmaps, back-planning, milestones", "sensitivity": "medium", "sensitive_data": ["Schedule", "Milestones", "Resources"], "rgpd_relevant": false, "description": "Project management — moderate data" },
+        { "id": "comptes-rendus-projet", "label": "Project reports, risks, decisions", "sensitivity": "medium", "sensitive_data": ["Decisions", "Risks", "Progress"], "rgpd_relevant": false, "description": "Project tracking — moderate data" },
+        { "id": "specifications", "label": "Functional and technical specifications", "sensitivity": "high", "sensitive_data": ["Architecture", "Business logic", "Technical data"], "rgpd_relevant": false, "description": "Specifications — sensitive data" },
+        { "id": "tests-recettes", "label": "Tests, acceptance, deliverables, validations", "sensitivity": "medium", "sensitive_data": ["Test results", "Validations"], "rgpd_relevant": false, "description": "Acceptance — moderate data" },
+        { "id": "raci", "label": "RACI, requirement matrices, workload plans", "sensitivity": "medium", "sensitive_data": ["Responsibilities", "Resources", "Requirements"], "rgpd_relevant": true, "description": "Management — moderate data" },
+        { "id": "suivi-delais", "label": "Timeline tracking, costs, decisions", "sensitivity": "high", "sensitive_data": ["Costs", "Deadlines", "Trade-offs", "Budget"], "rgpd_relevant": false, "description": "Project financial tracking — sensitive data" }
+      ]
+    },
+    {
+      "id": "support",
+      "label": "Support, Customer Service & After-Sales",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "tickets-sav", "label": "Support tickets, requests, complaints", "sensitivity": "medium", "sensitive_data": ["Customer data", "Requests", "History"], "rgpd_relevant": true, "description": "Support — moderate data" },
+        { "id": "scripts-faq", "label": "Response scripts, internal FAQs", "sensitivity": "low", "sensitive_data": ["Internal procedures"], "rgpd_relevant": false, "description": "Scripts — low data" },
+        { "id": "comptes-rendus-intervention", "label": "Intervention reports", "sensitivity": "medium", "sensitive_data": ["Customer", "Intervention", "Data"], "rgpd_relevant": true, "description": "Interventions — moderate data" },
+        { "id": "garanties-retours", "label": "Warranties, returns, credit notes", "sensitivity": "medium", "sensitive_data": ["Customer", "Amount", "Product"], "rgpd_relevant": true, "description": "After-sales — moderate data" },
+        { "id": "historique-incidents", "label": "Incident history and resolutions", "sensitivity": "medium", "sensitive_data": ["Incidents", "Solutions", "Customer data"], "rgpd_relevant": true, "description": "History — moderate data" },
+        { "id": "satisfaction-nps", "label": "Satisfaction surveys, NPS, verbatims", "sensitivity": "medium", "sensitive_data": ["Customer data", "Feedback", "Verbatims"], "rgpd_relevant": true, "description": "Satisfaction — moderate GDPR data" }
+      ]
+    },
+    {
+      "id": "immobilier",
+      "label": "Real Estate, Assets & Premises",
+      "icon": "building",
+      "documents": [
+        { "id": "baux", "label": "Leases, sub-leases, renewals", "sensitivity": "high", "sensitive_data": ["Parties", "Amounts", "Terms", "Address"], "rgpd_relevant": true, "description": "Leases — sensitive data" },
+        { "id": "plans-diagnostics", "label": "Plans, diagnostics, condition reports", "sensitivity": "medium", "sensitive_data": ["Plans", "Diagnostics", "Address"], "rgpd_relevant": false, "description": "Real estate — moderate data" },
+        { "id": "assurances-sinistres", "label": "Insurance, claims, assessments", "sensitivity": "high", "sensitive_data": ["Claims", "Amounts", "Assessments"], "rgpd_relevant": true, "description": "Insurance — sensitive data" },
+        { "id": "entretien-travaux", "label": "Maintenance, repairs, work", "sensitivity": "medium", "sensitive_data": ["Work", "Costs", "Contractors"], "rgpd_relevant": false, "description": "Maintenance — moderate data" },
+        { "id": "actes-proprietes", "label": "Property deeds, easements", "sensitivity": "critical", "sensitive_data": ["Property titles", "Assets", "Amounts"], "rgpd_relevant": true, "description": "Notarized deeds — critical data" },
+        { "id": "securite-locaux", "label": "Premises security documents", "sensitivity": "high", "sensitive_data": ["Security", "Access", "Vulnerabilities"], "rgpd_relevant": false, "description": "Premises security — sensitive data" }
+      ]
+    },
+    {
+      "id": "donnees-sensibles",
+      "label": "Sensitive Data & Regulatory Registers",
+      "icon": "scale",
+      "documents": [
+        { "id": "donnees-personnelles", "label": "Personal, financial, medical data", "sensitivity": "critical", "sensitive_data": ["Personal data", "Financial data", "Health data"], "rgpd_relevant": true, "description": "Sensitive data — critical GDPR" },
+        { "id": "pieces-identite", "label": "ID documents, proof of address", "sensitivity": "critical", "sensitive_data": ["ID document", "Address", "Photo", "Personal data"], "rgpd_relevant": true, "description": "Identity documents — critical GDPR" },
+        { "id": "donnees-bancaires", "label": "Banking data, IBAN, RIB", "sensitivity": "critical", "sensitive_data": ["IBAN", "RIB", "Bank details"], "rgpd_relevant": true, "description": "Banking data — critical" },
+        { "id": "dossiers-clients-sensibles", "label": "Customer files with sensitive documents", "sensitivity": "critical", "sensitive_data": ["Customer data", "Sensitive documents", "History"], "rgpd_relevant": true, "description": "Customer files — critical" },
+        { "id": "registres-legaux", "label": "Legal registers, compliance evidence", "sensitivity": "high", "sensitive_data": ["Mandatory registers", "Evidence"], "rgpd_relevant": true, "description": "Registers — sensitive data" },
+        { "id": "secret-affaires", "label": "Documents under trade or professional secrecy", "sensitivity": "critical", "sensitive_data": ["Trade secrets", "Strategy", "Confidential data"], "rgpd_relevant": false, "description": "Trade secrecy — critical" }
+      ]
+    },
+    {
+      "id": "archives",
+      "label": "Archives & Records Management",
+      "icon": "briefcase",
+      "documents": [
+        { "id": "dossiers-clos", "label": "Closed files", "sensitivity": "medium", "sensitive_data": ["Historical data", "Files"], "rgpd_relevant": true, "description": "Archives — moderate data" },
+        { "id": "documents-historiques", "label": "Historical documents", "sensitivity": "low", "sensitive_data": ["Old data"], "rgpd_relevant": false, "description": "History — low sensitivity" },
+        { "id": "archives-legales", "label": "Legal archives", "sensitivity": "high", "sensitive_data": ["Evidentiary documents", "Registers"], "rgpd_relevant": true, "description": "Legal archives — sensitive data" },
+        { "id": "preuves-conservation", "label": "Retention evidence", "sensitivity": "medium", "sensitive_data": ["Evidence", "Traceability"], "rgpd_relevant": false, "description": "Retention — moderate data" },
+        { "id": "archives-reference", "label": "Reference archives and final versions", "sensitivity": "low", "sensitive_data": ["Final versions"], "rgpd_relevant": false, "description": "Reference — low sensitivity" }
       ]
     },
     {
@@ -319,93 +198,11 @@
       "label": "Health & Medical",
       "icon": "heart",
       "documents": [
-        {
-          "id": "dossier-patient",
-          "label": "Patient record",
-          "sensitivity": "critical",
-          "sensitive_data": ["Health data", "Medical history", "Treatments", "Social security number", "Full identity"],
-          "rgpd_relevant": true,
-          "description": "Health data — medical secrecy, enhanced GDPR, critical"
-        },
-        {
-          "id": "ordonnance",
-          "label": "Prescription",
-          "sensitivity": "critical",
-          "sensitive_data": ["Health data", "Medications", "Dosage", "Patient identity", "Prescriber identity"],
-          "rgpd_relevant": true,
-          "description": "Medical data — medical secrecy, critical GDPR"
-        },
-        {
-          "id": "compte-rendu-medical",
-          "label": "Medical report",
-          "sensitivity": "critical",
-          "sensitive_data": ["Diagnosis", "Examinations", "Conclusions", "Patient identity", "Health data"],
-          "rgpd_relevant": true,
-          "description": "Detailed medical data — enhanced GDPR"
-        },
-        {
-          "id": "protocole-soin",
-          "label": "Treatment protocol",
-          "sensitivity": "critical",
-          "sensitive_data": ["Health data", "Treatment", "Patient follow-up", "Medical information"],
-          "rgpd_relevant": true,
-          "description": "Medical data — critical GDPR"
-        },
-        {
-          "id": "consentement-eclaire",
-          "label": "Informed consent",
-          "sensitivity": "high",
-          "sensitive_data": ["Patient identity", "Procedure", "Risks", "Signature", "Medical data"],
-          "rgpd_relevant": true,
-          "description": "Medical and legal document — personal and health data"
-        }
-      ]
-    },
-    {
-      "id": "administration",
-      "label": "Administration & Tax",
-      "icon": "building",
-      "documents": [
-        {
-          "id": "declaration-urssaf",
-          "label": "Social security declaration",
-          "sensitivity": "high",
-          "sensitive_data": ["Income", "Social security number", "Contributions", "Employment status"],
-          "rgpd_relevant": true,
-          "description": "Social declaration — personal and financial data"
-        },
-        {
-          "id": "dossier-cfe",
-          "label": "Business registration file",
-          "sensitivity": "medium",
-          "sensitive_data": ["Company information", "Activity", "Address", "Headcount"],
-          "rgpd_relevant": true,
-          "description": "Business creation — moderate data"
-        },
-        {
-          "id": "courrier-administratif",
-          "label": "Administrative letter",
-          "sensitivity": "medium",
-          "sensitive_data": ["File references", "Identity", "Subject", "Administrative decisions"],
-          "rgpd_relevant": true,
-          "description": "Official correspondence — moderate administrative data"
-        },
-        {
-          "id": "kbis",
-          "label": "Kbis / Trade register extract",
-          "sensitivity": "low",
-          "sensitive_data": ["Company name", "SIREN", "Address", "Officers"],
-          "rgpd_relevant": false,
-          "description": "Public document — accessible legal information"
-        },
-        {
-          "id": "extrait-rcs",
-          "label": "RCS extract",
-          "sensitivity": "low",
-          "sensitive_data": ["Company name", "SIREN", "Address", "Share capital"],
-          "rgpd_relevant": false,
-          "description": "Public document — commercial information"
-        }
+        { "id": "dossier-patient", "label": "Patient record", "sensitivity": "critical", "sensitive_data": ["Health data", "Medical history", "Treatments", "SSN", "Identity"], "rgpd_relevant": true, "description": "Health data — medical secrecy, enhanced GDPR" },
+        { "id": "ordonnance", "label": "Prescription", "sensitivity": "critical", "sensitive_data": ["Medications", "Dosage", "Patient identity", "Prescriber"], "rgpd_relevant": true, "description": "Medical data — critical GDPR" },
+        { "id": "compte-rendu-medical", "label": "Medical report", "sensitivity": "critical", "sensitive_data": ["Diagnosis", "Examinations", "Conclusions", "Patient identity"], "rgpd_relevant": true, "description": "Detailed medical data — enhanced GDPR" },
+        { "id": "protocole-soin", "label": "Treatment protocol", "sensitivity": "critical", "sensitive_data": ["Treatment", "Patient follow-up", "Health data"], "rgpd_relevant": true, "description": "Medical data — critical GDPR" },
+        { "id": "consentement-eclaire", "label": "Informed consent", "sensitivity": "high", "sensitive_data": ["Patient identity", "Procedure", "Risks", "Signature"], "rgpd_relevant": true, "description": "Medical and legal document — personal and health data" }
       ]
     }
   ]
