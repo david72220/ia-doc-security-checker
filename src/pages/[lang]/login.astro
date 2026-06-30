@@ -69,12 +69,10 @@ const i18n = tObj(lang);
       errorEl.classList.add('hidden');
 
       // API URL will be configured via environment variable in production
-      const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-        ? 'http://localhost:8082'
-        : 'https://ai-checker.srv1179315.hstgr.cloud';
+      const API_URL = '';  // Same origin — Vercel serverless functions
 
       try {
-        const res = await fetch(`${API_URL}/auth/login`, {
+        const res = await fetch(`${API_URL}/api/auth/login`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, password }),

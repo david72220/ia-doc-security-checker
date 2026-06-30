@@ -69,9 +69,7 @@ const i18n = tObj(lang);
   </section>
 
   <script is:inline define:vars={{ lang, i18n }}>
-    const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-      ? 'http://localhost:8082'
-      : 'https://ai-checker.srv1179315.hstgr.cloud';
+    const API_URL = '';  // Same origin — Vercel serverless functions
 
     const token = sessionStorage.getItem('jwt_token');
     if (!token) {
@@ -144,7 +142,7 @@ const i18n = tObj(lang);
       formData.append('file', file);
 
       try {
-        const res = await fetch(`${API_URL}/analyze`, {
+        const res = await fetch(`${API_URL}/api/analyze`, {
           method: 'POST',
           headers: { 'Authorization': `Bearer ${token}` },
           body: formData,

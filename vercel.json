@@ -1,0 +1,9 @@
+{
+  "buildCommand": "astro build",
+  "outputDirectory": "dist",
+  "functions": {
+    "api/index.py": {
+      "runtime": "@vercel/python"
+    }
+  }
+}
