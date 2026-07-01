@@ -74,7 +74,8 @@
     },
     "footer": {
       "disclaimer": "Cet outil est fourni à titre informatif et ne constitue pas un conseil juridique.",
-      "made_by": "Conçu par Alliance Digitale"
+      "made_by": "Conçu par Alliance Digitale",
+      "last_updated": "Base de données mise à jour le"
     }
   },
   "en": {
@@ -152,7 +153,8 @@
     },
     "footer": {
       "disclaimer": "This tool is provided for informational purposes and does not constitute legal advice.",
-      "made_by": "Designed by Alliance Digitale"
+      "made_by": "Designed by Alliance Digitale",
+      "last_updated": "Database last updated on"
     }
   }
 }
