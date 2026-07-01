@@ -46,7 +46,13 @@ export const POST: APIRoute = async ({ request }) => {
     });
 
     if (!notionResp.ok) {
-      return new Response(JSON.stringify({ detail: 'Erreur Notion API' }), {
+      const errorText = await notionResp.text();
+      return new Response(JSON.stringify({ 
+        detail: 'Erreur Notion API',
+        status: notionResp.status,
+        error: errorText.substring(0, 200),
+        token_preview: notionToken.substring(0, 5) + '...' + notionToken.substring(notionToken.length - 4),
+      }), {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       });
