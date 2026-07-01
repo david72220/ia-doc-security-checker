@@ -2,7 +2,6 @@
   "fr": {
     "nav": {
       "dashboard": "Tableau",
-      "analyze": "Analyser",
       "about": "À propos"
     },
     "home": {
@@ -63,27 +62,6 @@
       "not_recommended": "❌ Déconseillé",
       "local_only": "🔒 Modèle local uniquement"
     },
-    "analyze": {
-      "upload_title": "Analyser un document",
-      "upload_zone": "Glissez votre fichier ici ou cliquez pour parcourir",
-      "upload_formats": "Formats acceptés : PDF, DOCX, TXT, MD (max 5 MB)",
-      "analyze_btn": "Analyser",
-      "analyzing": "Analyse en cours sur le modèle local...",
-      "deleting": "Suppression du fichier en cours...",
-      "security_banner": "🔒 Votre document sera analysé sur un serveur local (VPS) et supprimé immédiatement après l'analyse. Aucune copie n'est conservée.",
-      "result_title": "Résultats de l'analyse",
-      "doc_type": "Type de document détecté",
-      "sensitive_data": "Données sensibles détectées",
-      "personal_data": "Données personnelles (RGPD)",
-      "financial_data": "Données financières",
-      "strategic_data": "Données stratégiques",
-      "credentials": "Identifiants et credentials",
-      "health_data": "Données de santé",
-      "none_found": "Aucune donnée sensible détectée",
-      "file_deleted": "✅ Votre fichier a été supprimé du serveur",
-      "deleted_at": "Supprimé à",
-      "analyze_another": "Analyser un autre document"
-    },
     "about": {
       "title": "À propos",
       "methodology": "Méthodologie",
@@ -102,7 +80,6 @@
   "en": {
     "nav": {
       "dashboard": "Dashboard",
-      "analyze": "Analyze",
       "about": "About"
     },
     "home": {
@@ -162,27 +139,6 @@
       "caution": "⚠️ With caution",
       "not_recommended": "❌ Not recommended",
       "local_only": "🔒 Local model only"
-    },
-    "analyze": {
-      "upload_title": "Analyze a document",
-      "upload_zone": "Drag your file here or click to browse",
-      "upload_formats": "Accepted formats: PDF, DOCX, TXT, MD (max 5 MB)",
-      "analyze_btn": "Analyze",
-      "analyzing": "Analyzing on local model...",
-      "deleting": "Deleting file...",
-      "security_banner": "🔒 Your document will be analyzed on a local server (VPS) and deleted immediately after analysis. No copy is kept.",
-      "result_title": "Analysis results",
-      "doc_type": "Detected document type",
-      "sensitive_data": "Sensitive data detected",
-      "personal_data": "Personal data (GDPR)",
-      "financial_data": "Financial data",
-      "strategic_data": "Strategic data",
-      "credentials": "Credentials and secrets",
-      "health_data": "Health data",
-      "none_found": "No sensitive data detected",
-      "file_deleted": "✅ Your file has been deleted from the server",
-      "deleted_at": "Deleted at",
-      "analyze_another": "Analyze another document"
     },
     "about": {
       "title": "About",

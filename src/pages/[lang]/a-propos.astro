@@ -10,7 +10,7 @@ const lang = getLangFromUrl(Astro.url);
 const i18n = tObj(lang);
 ---
 
-<Layout>
+<Layout title={i18n.about.title}>
   <section class="py-12 px-4">
     <div class="max-w-3xl mx-auto">
       <h1 class="text-3xl font-bold text-slate-900 mb-8">{i18n.about.title}</h1>

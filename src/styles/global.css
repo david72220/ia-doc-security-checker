@@ -29,17 +29,6 @@ body {
   animation: pulse-critical 2s ease-in-out infinite;
 }
 
-/* Upload zone */
-.upload-zone {
-  transition: all 0.3s ease;
-}
-
-.upload-zone.dragover {
-  border-color: #3b82f6;
-  background-color: #eff6ff;
-  transform: scale(1.02);
-}
-
 /* Table responsive */
 @media (max-width: 768px) {
   .model-table {

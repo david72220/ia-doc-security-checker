@@ -17,7 +17,7 @@ const sectors = (lang === 'fr' ? sectorsFr : sectorsEn).sectors;
 const models = (lang === 'fr' ? modelsFr : modelsEn).models;
 ---
 
-<Layout>
+<Layout title={lang === 'fr' ? 'Résultat' : 'Result'}>
   <section class="py-8 px-4">
     <div class="max-w-5xl mx-auto" id="result-container">
       <!-- Loading state -->

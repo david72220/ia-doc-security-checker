@@ -2,12 +2,19 @@
 import '../styles/global.css';
 import { getLangFromUrl, tObj } from '../i18n/index';
 
+interface Props {
+  title?: string;
+}
+
+const { title: pageTitle } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const i18n = tObj(lang);
 const pathname = Astro.url.pathname;
 
-// Normalize pathname for comparison (remove lang prefix)
 const normalizedPath = pathname.replace(/^\/(fr|en)/, '') || '/';
+
+const siteTitle = i18n.home.title;
+const fullTitle = pageTitle && pageTitle !== siteTitle ? `${pageTitle} — ${siteTitle}` : siteTitle;
 
 const navItems = [
   { href: `/${lang}/tableau`, label: i18n.nav.dashboard, active: normalizedPath === '/tableau' },
@@ -20,14 +27,10 @@ const navItems = [
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content={i18n.home.subtitle}
-    />
-    <title>{i18n.home.title}</title>
+    <meta name="description" content={i18n.home.subtitle} />
+    <title>{fullTitle}</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script is:inline>
-      // Prevent FOUC: set lang before render
       const saved = localStorage.getItem('preferred_lang');
       if (saved && saved !== document.documentElement.lang) {
         const newPath = window.location.pathname.replace(/^\/(fr|en)?/, '/' + saved);
@@ -42,17 +45,15 @@ const navItems = [
     <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16">
-          <!-- Logo -->
           <a href={`/${lang}`} class="flex items-center gap-2">
             <svg class="w-8 h-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
             <span class="font-bold text-lg text-slate-900 hidden sm:block">
-              {i18n.home.title}
+              {siteTitle}
             </span>
           </a>
 
-          <!-- Nav -->
           <nav class="flex items-center gap-1">
             {navItems.map((item) => (
               <a
@@ -67,11 +68,10 @@ const navItems = [
               </a>
             ))}
 
-            <!-- Language toggle -->
-            <div class="ml-2 flex items-center rounded-lg border border-slate-200 overflow-hidden lang-toggle">
+            <div class="ml-2 flex items-center rounded-lg border border-slate-200 overflow-hidden">
               <button
                 id="lang-fr"
-                class={`px-3 py-1.5 text-sm font-medium lang-toggle ${
+                class={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   lang === 'fr' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
@@ -79,7 +79,7 @@ const navItems = [
               </button>
               <button
                 id="lang-en"
-                class={`px-3 py-1.5 text-sm font-medium lang-toggle ${
+                class={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   lang === 'en' ? 'bg-blue-600 text-white' : 'text-slate-600 hover:bg-slate-100'
                 }`}
               >
@@ -91,12 +91,10 @@ const navItems = [
       </div>
     </header>
 
-    <!-- Main content -->
     <main class="flex-1">
       <slot />
     </main>
 
-    <!-- Footer -->
     <footer class="bg-slate-900 text-slate-300 py-8 mt-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <p class="text-sm text-slate-400 mb-2">{i18n.footer.disclaimer}</p>
@@ -104,7 +102,6 @@ const navItems = [
       </div>
     </footer>
 
-    <!-- Lang toggle script -->
     <script is:inline>
       document.getElementById('lang-fr')?.addEventListener('click', () => {
         localStorage.setItem('preferred_lang', 'fr');
