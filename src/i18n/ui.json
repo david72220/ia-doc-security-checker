@@ -3,8 +3,7 @@
     "nav": {
       "dashboard": "Tableau",
       "analyze": "Analyser",
-      "about": "À propos",
-      "login": "Connexion"
+      "about": "À propos"
     },
     "home": {
       "title": "IA Doc Security Checker",
@@ -22,9 +21,7 @@
       "step2": "Choisissez votre type de document",
       "step2_desc": "Facture, contrat, fiche de paie, devis...",
       "step3": "Obtenez votre recommandation",
-      "step3_desc": "Niveau de risque + modèles IA adaptés",
-      "have_document": "Vous avez un document à analyser ?",
-      "login_link": "Connectez-vous"
+      "step3_desc": "Niveau de risque + modèles IA adaptés"
     },
     "search": {
       "placeholder": "Rechercher un type de document...",
@@ -41,8 +38,7 @@
       "all_jurisdictions": "Toutes les juridictions",
       "all_risks": "Tous les niveaux",
       "local_alternatives": "Alternatives locales (recommandé pour documents sensibles)",
-      "back_to_dashboard": "Retour au tableau",
-      "analyze_real_doc": "Analyser un document réel"
+      "back_to_dashboard": "Retour au tableau"
     },
     "risk": {
       "low": "Faible",
@@ -66,15 +62,6 @@
       "caution": "⚠️ Avec précaution",
       "not_recommended": "❌ Déconseillé",
       "local_only": "🔒 Modèle local uniquement"
-    },
-    "auth": {
-      "login_title": "Connexion — Analyseur de documents",
-      "email": "Email",
-      "password": "Mot de passe",
-      "login_btn": "Se connecter",
-      "login_error": "Email ou mot de passe incorrect",
-      "request_access": "Demander un accès",
-      "access_info": "L'accès est compris dans les formations"
     },
     "analyze": {
       "upload_title": "Analyser un document",
@@ -116,8 +103,7 @@
     "nav": {
       "dashboard": "Dashboard",
       "analyze": "Analyze",
-      "about": "About",
-      "login": "Login"
+      "about": "About"
     },
     "home": {
       "title": "AI Doc Security Checker",
@@ -135,9 +121,7 @@
       "step2": "Choose your document type",
       "step2_desc": "Invoice, contract, payslip, quote...",
       "step3": "Get your recommendation",
-      "step3_desc": "Risk level + suitable AI models",
-      "have_document": "Have a document to analyze?",
-      "login_link": "Log in"
+      "step3_desc": "Risk level + suitable AI models"
     },
     "search": {
       "placeholder": "Search for a document type...",
@@ -154,8 +138,7 @@
       "all_jurisdictions": "All jurisdictions",
       "all_risks": "All levels",
       "local_alternatives": "Local alternatives (recommended for sensitive documents)",
-      "back_to_dashboard": "Back to dashboard",
-      "analyze_real_doc": "Analyze a real document"
+      "back_to_dashboard": "Back to dashboard"
     },
     "risk": {
       "low": "Low",
@@ -179,15 +162,6 @@
       "caution": "⚠️ With caution",
       "not_recommended": "❌ Not recommended",
       "local_only": "🔒 Local model only"
-    },
-    "auth": {
-      "login_title": "Login — Document Analyzer",
-      "email": "Email",
-      "password": "Password",
-      "login_btn": "Log in",
-      "login_error": "Incorrect email or password",
-      "request_access": "Request access",
-      "access_info": "Access is included in training courses"
     },
     "analyze": {
       "upload_title": "Analyze a document",
