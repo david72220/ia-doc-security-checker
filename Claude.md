@@ -1,137 +1,116 @@
 # Informations du Projet
 
 ## Nom du Projet
-IA Doc Security Checker
+Outil sécurité documents par l'IA (IA Doc Security Checker)
 
 ## Date de création/mise à jour
-01/07/2026 17:07:57
+30/06/2026
 
 ## Description
-Outil web permettant de vérifier le niveau de sécurité des documents professionnels avant de les utiliser avec des modèles d'IA. Classification par secteur (comptabilité, commercial, juridique, RH, etc.) avec recommandations de modèles IA adaptés selon la sensibilité des données.
+Outil web permettant aux auto-entrepreneurs, TPE et PME d'évaluer le degré de sécurité d'un document type avant de le déposer sur une plateforme d'IA (ChatGPT, Claude, DeepSeek, Mistral, etc.). L'outil classe les documents par secteur (compta, commercial, juridique, RH, etc.), indique le niveau de risque, où vont les données (US, FR, EU, Chine), et recommande les modèles appropriés selon la sensibilité — y compris les modèles locaux (Ollama) pour les documents critiques.
 
-## Stack Technique
-- **Framework**: Astro 6+ (static site avec SSR pour API routes)
-- **Styling**: Tailwind CSS
-- **Déploiement**: Vercel (serverless functions)
-- **i18n**: Bilingue FR/EN
-- **Backend**: FastAPI (non déployé - prévu pour VPS Hostinger)
+## Architecture
+
+### Deux versions
+1. **Version publique (sans login)** : tableau de bord interactif — sélection secteur → type de document → niveau de risque + tableau des modèles IA + recommandation. Moteur de recherche par mot-clé.
+2. **Version authentifiée (user/mdp)** : upload de document analysé sur le VPS via Ollama local, suppression immédiate après analyse. Accès compris dans les formations payantes.
+
+### Stack technique
+- **Frontend** : Astro 6+ statique, Tailwind CSS, bilingue FR/EN (bouton toggle)
+- **Backend analyse** : FastAPI sur VPS Hostinger (72.62.21.38), Ollama local (qwen3.5:9b)
+- **Authentification** : JWT, base utilisateurs dans Notion (API Notion)
+- **Déploiement** : Frontend sur Vercel, API sur VPS via Traefik
+- **Domaine** : nouveau domaine à créer
+
+### Base de données
+- `src/data/sectors.fr.json` / `sectors.en.json` — secteurs + types de documents + niveaux de sensibilité
+- `src/data/models.fr.json` / `models.en.json` — catalogue des modèles IA (juridiction, rétention, entraînement, risque)
+- `src/data/recommendations.json` — matrice de recommandation (sensibilité × modèle)
+- Base Notion "Utilisateurs" pour l'authentification (Nom, Email, Password hash, Formation, Actif)
+
+### Niveaux de sensibilité des documents
+- 🟢 Faible : pas de données personnelles, informations publiques
+- 🟡 Moyen : données commerciales/financières non sensibles
+- 🔴 Élevé : données personnelles RGPD, informations financières détaillées
+- 🔴🔴 Critique : secrets industriels, santé, credentials, données clients massives → modèles locaux uniquement
+
+### Modèles IA référencés
+ChatGPT (free/plus/enterprise), Claude, Google Gemini, Mistral/Le Chat, DeepSeek, Qwen, Kimi, GLM, Ollama Cloud, Ollama Local, Azure OpenAI, AWS Bedrock.
 
 ## Structure du projet
 ```
-src/
-├── pages/
-│   ├── [lang]/
-│   │   ├── index.astro        # Page d'accueil avec sélection type entreprise
-│   │   ├── tableau.astro      # Tableau de bord avec secteurs/documents
-│   │   ├── analyse.astro      # Upload et analyse de documents
-│   │   ├── resultat.astro     # Résultats avec recommandations
-│   │   └── a-propos.astro     # Page À propos
-│   └── api/
-│       └── health.ts          # Health check endpoint
-├── layouts/
-│   └── Layout.astro           # Layout principal avec navigation
-├── data/
-│   ├── sectors.fr.json        # Secteurs et documents (FR) - 15 secteurs, 80+ docs
-│   ├── sectors.en.json        # Secteurs et documents (EN)
-│   ├── models.fr.json         # Modèles IA avec juridictions (FR)
-│   ├── models.en.json         # Modèles IA (EN)
-│   └── recommendations.json   # Matrice de recommandations par sensibilité
-├── i18n/
-│   ├── index.ts               # Utilitaires i18n
-│   └── ui.json                # Traductions FR/EN
-└── styles/
-    └── global.css             # Styles globaux Tailwind
+./.git
+./Claude.md
+./astro.config.mjs
+./package.json
+./tsconfig.json
+./public/
+./src/
 ```
+> Voir le plan détaillé : ~/.hermes/plans/2026-06-30_143000-ai-doc-security-checker.md
 
 ## Fichiers importants
-
-- `astro.config.mjs` - Configuration Astro avec adapter Vercel
-- `src/data/sectors.fr.json` - Base de données des secteurs/documents
-- `src/data/models.fr.json` - Base de données des modèles IA
-- `src/data/recommendations.json` - Logique de recommandation par sensibilité
-- `src/i18n/ui.json` - Toutes les traductions FR/EN
-
-## URLs de production
-
-- **Site**: https://ia-doc-security.vercel.app
-- **Health API**: https://ia-doc-security.vercel.app/api/health
-- **GitHub**: https://github.com/david72220/ia-doc-security-checker
+- `Claude.md` — ce fichier (contexte projet)
+- Plan d'implémentation : `~/.hermes/plans/2026-06-30_143000-ai-doc-security-checker.md`
 
 ## Informations Git
-
-### Derniers commits
-```
-8e17ecc chore: remove all login/auth references from UI and translations
-03d5ed9 chore: remove 'Connexion' from nav, replace login links with analyze
-f4c931b chore: remove Notion auth - public access only, clean up API routes
-141d6f7 debug: add test-notion endpoint
-3774e03 debug: add detailed error info for Notion API
-```
-
 ### Branche actuelle
 ```
 main
 ```
 
-### Statut (fichiers modifiés)
-```
- M Claude.md
-?? Claude.md.backup.1782918477
-```
+## Conventions & règles de développement
 
-## Variables d'environnement
+### Workflow David (strict plan-first)
+1. **Plan avant exécution** — ne jamais commencer à coder sans plan validé
+2. **Vérification stricte** : write → commit → push → build → deploy → verify
+3. **Confirmation explicite** avant toute opération destructive
+4. **Détails visuels importants** : pas d'images dupliquées, pas de cartes identiques
+5. Texte français destiné à la publication DOIT passer par l'agent de relecture (skill text-review-french, mistral-large-3:675b)
 
-Fichier `.env` (non commité) :
-- `NOTION_TOKEN` - Token API Notion (non utilisé actuellement)
-- `NOTION_USERS_DB_ID` - ID de la database Notion (non utilisé actuellement)
+### Modèles d'exécution
+David a demandé l'exécution avec des **modèles locaux sur son Mac** (M2 Max 32 Go) :
+- Ollama local tourne sur `localhost:11434`
+- Modèles disponibles localement : qwen2.5:3b, llama3.2:3b, qwen3.5:9b
+- Pour le délégué (subagents) : utiliser `qwen3.5:9b` via Ollama local (0 token, 0 coût)
+- Modèle principal (orchestrateur) : GLM-5.2:cloud via Ollama Cloud
 
-## Déploiement Vercel
+### Bilinguisme FR/EN
+- Bouton toggle de langue dans le header (LangToggle.astro)
+- Fichiers JSON en double : `.fr.json` / `.en.json`
+- Traductions d'interface dans `src/i18n/ui.json` (`{ fr: {...}, en: {...} }`)
+- Détection auto de la langue navigateur (Accept-Language), FR par défaut
+- Préférence stockée dans `localStorage`
 
-```bash
-# Build
-npm run build
+### Sécurité & confidentialité
+- L'API d'analyse reçoit des documents potentiellement sensibles
+- HTTPS uniquement (Traefik), authentification JWT
+- Suppression immédiate des fichiers après analyse (secure delete / shred)
+- Pas de logging du contenu des documents
+- Banner visible pendant l'analyse : "🔒 Votre document est analysé sur un serveur local et supprimé immédiatement"
+- Rate limiting sur l'API
 
-# Déploiement production
-vercel --prod --yes
-```
+### VPS Hostinger (72.62.21.38)
+- Ubuntu 24.04, n8n, Ollama (:11434)
+- Traefik pour le routing : `ai-checker.srv1179315.hstgr.cloud` → `localhost:8082`
+- Modèles cloud disponibles : glm-5.1/5.2, ministral-3:14b, kimi-k2.7-code, deepseek-v4-pro, qwen3.5, gemma4:31b
+- Modèles locaux : qwen2.5:3b, llama3.2:3b, qwen3.5:9b
 
-## Architecture des données
+### Déploiement Vercel
+- ⚠️ Pour un nouveau projet : `rm -rf .vercel && rm -rf .git` AVANT deploy si on copie un site existant
+- David déploie via Vercel CLI
 
-### Niveaux de sensibilité
-- `low` - Documents publics (ex: devis standard)
-- `medium` - Données commerciales non sensibles
-- `high` - Données personnelles RGPD, finances détaillées
-- `critical` - Secrets industriels, santé, credentials
+## Variables d'environnement requises
+- `NOTION_TOKEN` — token API Notion (pour auth)
+- `NOTION_USERS_DB_ID` — ID de la base Notion Utilisateurs
+- `JWT_SECRET` — secret pour signer les JWT
+- `OLLAMA_BASE_URL` — `http://localhost:11434` (VPS) ou `http://localhost:11434` (Mac local)
+- `VPS_API_URL` — URL de l'API sur le VPS (pour le frontend)
 
-### Juridictions des modèles IA
-- `LOCAL` - Modèles locaux (Ollama, LM Studio)
-- `FR/EU` - Mistral, OVHcloud, LightOn
-- `US` - OpenAI, Anthropic, Google
-- `CN` - Modèles chinois
-- `OTHER` - Autres juridictions
-
-### Critères de recommandation
-1. Sensibilité du document
-2. Juridiction du fournisseur IA
-3. Politique de rétention des données
-4. Entraînement sur les données utilisateur
-
-## Pitfall: NFD/NFC encoding
-
-Le dossier du projet a été créé via macOS Finder (NFD encoding). Les outils Hermes écrivent en NFC. Toujours utiliser le terminal pour les opérations de fichiers :
-
-```bash
-# Correct
-cd "/Users/davidollivier/Documents/Antigravity/Outil securité documents par l'IA"
-~/.hermes/scripts/eclaude.sh
-
-# Incorrect (peut créer un phantom directory NFC)
-write_file path="/Users/davidollivier/Documents/Antigravity/Outil securite documents par l'IA/..."
-```
-
-## Prochaines étapes (TODO)
-
-- [ ] Déployer backend FastAPI sur VPS Hostinger (72.62.21.38)
-- [ ] Implémenter l'analyse réelle de documents avec modèle local
-- [ ] Ajouter page de recherche par mot-clé
-- [ ] Intégrer base Notion pour contenu dynamique
+## Prochaines étapes
+1. ⬜ Trouver un nom de domaine + créer le repo GitHub
+2. ⬜ Scaffolding Astro 6+ + Tailwind (Phase 1, Task 1)
+3. ⬜ Base de données secteurs + modèles (Phase 2)
+4. ⬜ Tableau de bord public + moteur de recherche (Phase 3)
+5. ⬜ API auth Notion + analyse Ollama sur VPS (Phase 4)
+6. ⬜ Déploiement Vercel + VPS (Phase 5)
