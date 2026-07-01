@@ -15,9 +15,9 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
-    const notionToken = import.meta.env.NOTION_TOKEN || process.env.NOTION_TOKEN || '';
-    const notionDbId = import.meta.env.NOTION_USERS_DB_ID || process.env.NOTION_USERS_DB_ID || '';
-    const jwtSecret = import.meta.env.JWT_SECRET || process.env.JWT_SECRET || 'change-me-in-production';
+    const notionToken = process.env.NOTION_TOKEN || '';
+    const notionDbId = process.env.NOTION_USERS_DB_ID || '';
+    const jwtSecret = process.env.JWT_SECRET || 'change-me-in-production';
 
     if (!notionToken || !notionDbId) {
       return new Response(JSON.stringify({ detail: 'Configuration Notion manquante' }), {
