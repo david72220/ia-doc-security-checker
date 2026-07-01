@@ -2,8 +2,8 @@
   "matrix": {
     "low": {
       "recommended": ["chatgpt-free", "chatgpt-plus", "claude-sonnet", "gemini-free", "mistral-api", "le-chat", "copilot-365", "groq", "perplexity", "grok", "ollama-local", "llama-cpp-local", "azure-openai", "aws-bedrock", "gemini-workspace", "chatgpt-enterprise"],
-      "caution": [],
-      "forbidden": ["deepseek", "qwen", "kimi", "glm"],
+      "caution": ["deepseek", "qwen", "kimi", "glm"],
+      "forbidden": [],
       "local_only": false
     },
     "medium": {
