@@ -69,12 +69,7 @@ const i18n = tObj(lang);
   </section>
 
   <script is:inline define:vars={{ lang, i18n }}>
-    const API_URL = '';  // Same origin — Vercel serverless functions
-
-    const token = sessionStorage.getItem('jwt_token');
-    if (!token) {
-      window.location.href = `/${lang}/login`;
-    }
+    // No auth required - public access
 
     // Upload zone interactions
     const uploadZone = document.getElementById('upload-zone');
@@ -142,17 +137,10 @@ const i18n = tObj(lang);
       formData.append('file', file);
 
       try {
-        const res = await fetch(`${API_URL}/api/analyze`, {
+        const res = await fetch('/api/analyze', {
           method: 'POST',
-          headers: { 'Authorization': `Bearer ${token}` },
           body: formData,
         });
-
-        if (res.status === 401) {
-          sessionStorage.removeItem('jwt_token');
-          window.location.href = `/${lang}/login`;
-          return;
-        }
 
         if (!res.ok) throw new Error('Analysis failed');
 
